@@ -1,7 +1,7 @@
 const request = require('request')
 
 const forecast = (lat, long, cb) => {
-    const url = `http://api.weatherstack.com/current?access_key=3eeca5a78dc885f10a723c5095107b54&query=${lat},%${long}&units=f`
+    const url = `http://api.weatherstack.com/current?access_key=3eeca5a78dc885f10a723c5095107b54&query=${lat},%${long}`
     //destructuring 'body' object from response
     request({ url, json: true }, (err, { body } = {}) => {
         if (err) cb('Unable to connect to weather service')
