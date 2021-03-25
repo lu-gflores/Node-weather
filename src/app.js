@@ -51,10 +51,10 @@ app.get('/weather', (req, res) => {
     //destructuring from 'data' object
     geocode(req.query.address, (err, { latitude, longitude, location } = {}) => {
 
-        if (err) return res.send({ error })
+        if (err) return res.send({ err })
 
         forecast(latitude, longitude, (err, forecastData) => {
-            if (err) return res.send({ error })
+            if (err) return res.send({ err })
 
             res.send({
                 forecast: forecastData,
