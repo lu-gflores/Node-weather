@@ -41,9 +41,28 @@ app.get('/help', (req, res) => {
 })
 
 app.get('/weather', (req, res) => {
+    if (!req.query.address) {
+        return res.send({
+            error: 'Must provide an address'
+        })
+    }
     res.send({
         location: 'Long Island, New York',
-        forecast: 'Partly Cloudy.'
+        forecast: 'Partly Cloudy.',
+        address: req.query.address
+    })
+})
+
+app.get('/products', (req, res) => {
+    //if there is no search query send error message
+    if (!req.query.search) {
+        //stops the search function
+        return res.send({
+            error: 'Must provide a search term'
+        })
+    }
+    res.send({
+        products: []
     })
 })
 
@@ -55,6 +74,8 @@ app.get('/help/*', (req, res) => {
     })
 })
 
+
+
 /* wildcard character to match anything*/
 
 app.get('*', (req, res) => {
@@ -64,6 +85,8 @@ app.get('*', (req, res) => {
         errorMessage: 'Page not found.'
     })
 })
+
+
 
 app.listen(3000, () => {
     console.log('Listening on port 3000')
